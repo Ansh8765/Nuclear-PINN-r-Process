@@ -13,7 +13,7 @@ We need to import AME2020 first of all and define our test and train regions
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('/content/ame2020 (1).csv') #source :  NuCLR AME2020 Dataset on Zenodo
+df = pd.read_csv('/data/raw/ame2020 (1).csv') #source :  NuCLR AME2020 Dataset on Zenodo
 
 df.head(10)
 
@@ -125,22 +125,22 @@ train_set, interpolation_test = train_test_split(
 )
 
 train_set.to_csv(
-    "training_set.csv",
+    "data/processed/training_set.csv",
     index=False
 )
 
 interpolation_test.to_csv(
-    "interpolation_test.csv",
+    "data/processed/interpolation_test.csv",
     index=False
 )
 
 near_extrapolation.to_csv(
-    "near_extrapolation_test.csv",
+    "data/processed/near_extrapolation_test.csv",
     index=False
 )
 
 far_extrapolation.to_csv(
-    "far_extrapolation_test.csv",
+    "data/processed/far_extrapolation_test.csv",
     index=False
 )
 
@@ -176,28 +176,4 @@ plt.savefig('regions.png', dpi=300, bbox_inches='tight')
 files.download('regions.png')
 plt.show()
 
-!git clone https://github.com/Ansh8765/Nuclear-PINN-r-Process.git
-
-# Commented out IPython magic to ensure Python compatibility.
-# %cd Nuclear-PINN-r-Process
-
-!mkdir -p data/raw data/processed src notebooks results
-
-!pwd
-!ls -la
-
-!mv '/content/ame2020 (1).csv' ./data/raw
-
-import os
-
-# Ensure the data/processed directory exists
-!mkdir -p ./data/processed
-
-# Move the generated CSV files to the data/processed directory
-!mv /content/training_set.csv ./data/processed/
-!mv /content/interpolation_test.csv ./data/processed/
-!mv /content/near_extrapolation_test.csv ./data/processed/
-!mv /content/far_extrapolation_test.csv ./data/processed/
-
-print('CSV files moved to data/processed/')
 
